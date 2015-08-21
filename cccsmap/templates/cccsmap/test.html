@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block meta_title %}
+    CCCS Map Test
+{% endblock meta_title %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'cccsmap/openlayers/theme/default/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'cccsmap/openlayers/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'cccsmap/css/custom.css' %}" type="text/css">
+    {{ block.super }}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'cccsmap/openlayers/OpenLayers.js' %}"></script>
+    <script src="{% static 'cccsmap/js/cccsmap.js' %}"></script>
+{% endblock extra_js %}
+
+{% block main %}
+    <h1 id="title">GeoJSON Example</h1>
+
+    <div id="tags">
+       JSON, GeoJSON, light
+    </div>
+
+      <p id="shortdesc">
+        Demonstrate the use of the GeoJSON format.
+    </p>
+    <div id="map" class="smallmap"></div>
+{% endblock main %}

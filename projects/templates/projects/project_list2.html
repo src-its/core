@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block meta_title %}
+Thematic Experience
+{% endblock meta_title %}
+{% with use_right_col=False %}
+    {% block main %}
+        <h2>Projects by {{ categorization_name }}</h2>
+        <div class="panel-group" id="theme_accordion">
+            {% for super_name, super_info in categorization.items %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title"><a class="panel-toggle" data-toggle="collapse" data-parent="#theme_accordion" href="#acc{{ super_info.id }}">
+                            {{ super_name }}&nbsp;&nbsp;&nbsp;<strong>({{ super_info.count }} project{{ super_info.count|pluralize }})</strong>
+                        </a></h4>
+                    </div>
+                    <div id="acc{{ super_info.id }}" class="panel-body collapse">
+                        <div class="panel-inner">
+
+                            <!-- Here we insert another nested accordion -->
+
+                            <div class="panel-group" id="inneracc{{ super_info.id }}">
+                                {% for sub_name, sub_info in super_info.subs.items %}
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title"><a class="panel-toggle" data-toggle="collapse" data-parent="#inneracc{{ super_info.id }}" href="#collapse{{ sub_info.id }}">
+                                                {{ sub_name }}&nbsp;&nbsp;&nbsp;<strong>({{ sub_info.count }} project{{ sub_info.count|pluralize }})</strong>
+                                            </a></h4>
+                                        </div>
+                                        <div id="collapse{{ sub_info.id }}" class="panel-body collapse">
+                                            <div class="panel-inner">
+                                                <ul>
+                                                    {% for project in sub_info.projects %}
+                                                        <li><a href="{% url 'project-detail' slug=project.slug %}">{{ project.name }}</a></li>
+                                                    {% empty %}
+                                                        <li>No projects found.</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Inner accordion ends here -->
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+
+
+{% endblock main %}
+{% endwith %}
