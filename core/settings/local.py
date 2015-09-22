@@ -6,15 +6,15 @@ DEBUG = True
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "cccs",
-        "USER": "cccs",
-        "PASSWORD": DBPASSWORD,
+        "NAME": "its",
+        "USER": "its",
+        "PASSWORD": "src-its",
         "HOST": "",
         "PORT": ""}}
 
-VIRTUALENV = 'cccs'
+VIRTUALENV = 'src-its'
 
 
-SITE_TITLE = 'Cross-Cultural Consulting Services'
+SITE_TITLE = 'SRC-ITS Django'
 SITE_TAGLINE = None
 POSTGIS_VERSION = (2, 1, 2)
