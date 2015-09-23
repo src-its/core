@@ -12,7 +12,9 @@ DATABASES = {
         "HOST": "",
         "PORT": ""}}
 
-AWS_STORAGE_BUCKET_NAME = "docs"
+AWS_STORAGE_BUCKET_NAME = "src-its-secure"
+
+POSTGIS_VERSION = (2, 1, 2)
 
 ###################
 # DEPLOY SETTINGS #
