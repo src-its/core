@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title> Productivity! </title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="css/bootstrap-reset.css" rel="stylesheet">
+<link rel="stylesheet" href="css/datepicker.css">
+<link rel="stylesheet" href="css/bootstrap.css">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+</head>
+ <div class="container">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login">Login and Edit</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Login</h4>
+        </div>
+        <div class="modal-body">
+          <form name = "login">
+		  Username: <input type = "text" name = "user"> <br />
+		  Password: <input type = "password" name = "pass"> <br />
+		  <button type="button" class="btn btn-info btn-sm" onclick=""> Submit </button>
+		  </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<div id="todos"> 
+<form>
+	<input type = "checkbox" value = "1" onclick="msg()">
+	Finished!
+</form>
+
+<p>In aliquet nunc vitae sollicitudin faucibus. Fusce tristique lobortis cursus. Nunc scelerisque felis at ante ornare, scelerisque varius eros fermentum. Cras semper mollis quam vitae suscipit. Phasellus volutpat nibh quis efficitur fermentum. Donec sit amet massa nunc. Proin aliquam, est a dictum molestie, risus tellus vulputate ipsum, non tempus neque nisi at risus. Proin libero diam, euismod vel justo vel, ultricies viverra tellus. Curabitur pharetra urna ante, id scelerisque magna cursus vel. Nunc vitae lorem ligula.</p>
+ </div>
+<!--<div id="newtasks">
+<form name = "newTask" onsubmit="SetTask()">
+	Task name: <input type = "text" name = "taskname"><br />
+	Due date (formatted as mm/dd/yyyy): <input id = "date" type = "text" name = "date"><br />
+	<button onclick="setTask(newTask)"> Submit </button>
+</form>-->
+   <div class="hero-unit">
+                <input  type="text" placeholder="click to show datepicker"  id="example1">
+    </div>
+</div>
+ </div>
+ <!--</div>-->
+</html>
+<script>
+function msg(){
+	alert("Congrats");
+}
+function setTask(task){
+	alert(task.taskname.value + task.date.value);
+}
+</script>
+<script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/bootstrap-datepicker.js"></script>
+        <script type="text/javascript">
+            // When the document is ready
+            $(document).ready(function () {
+                
+                $('#example1').datepicker({
+                    format: "dd/mm/yyyy"
+                });  
+            
+            });
+        </script>
+<style type="text/css">
+#container{
+	width:100%;
+}
+#todos{
+    background-color:#eeeeee;
+    width:30%;
+    float:left;
+	margin: 0 auto;
+	border-style:outset;
+	border-color:blue;
+}
+#newtasks{
+	width:65%;
+    float:left;
+	margin: 0 auto 0 10px;
+}
+</style>
