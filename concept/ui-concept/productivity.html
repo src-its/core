@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container">
- <div class="newtasks" class="col-md-8">
+ <div id="newtasks" class="col-md-8">
   <!-- Trigger the modal with a button -->
   <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login">Login and Edit</button>
 
@@ -46,8 +46,8 @@
                       <div class="panel-body">
                           <form action="#" class="form-horizontal tasi-form">
                               <div class="form-group">
-                                  <label class="control-label col-md-3">Default Datepicker</label>
-                                  <div class="col-md-3 col-xs-11">
+                                  <label class="control-label col-md-4">Event Date</label>
+                                  <div class="col-md-4">
                                       <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
                                   </div>
                               </div>
@@ -95,17 +95,21 @@
   </body>
 <style type="text/css">
 #container{
-	width:75%;
+	//width:75%;
 	margin: 0 auto;
+}
+body{
+	padding-top:20px;
 }
 #todos{
     background-color:#eeeeee;
     float:left;
-	margin: 10px 10px 0px 0px;
+	// margin: 10px 10px 0px 0px;
 	border-style:outset;
 	border-color:blue;
 }
 #newtasks{
-	margin: 10px 0 0 0
+	float:right;
+	// margin: 10px 0 0 0
 }
 </style>
