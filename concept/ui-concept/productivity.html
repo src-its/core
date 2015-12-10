@@ -1,6 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><title> Productivity! </title>
+<head>
+	<script>
+		function initTasks(){
+			if(localStorage.list === undefined || localStorage.list === null){
+				document.getElementById("checklist").innerHTML = "All done!";
+				var tasks = [];
+				localStorage.list = JSON.stringify(tasks);
+			}else{
+				var tasks = JSON.parse(localStorage.list);
+				var checklist = document.getElementById("checklist");
+				for(var i = 0; i < tasks.length; i++){
+					if(i === 0){
+						checklist.innerHTML = "<input type = 'checkbox' value = '1'> " + tasks[i].item + " Due on: " + tasks[i].date;
+					}else{
+						checklist.innerHTML = checklist.innerHTML + "<br /> <input type = 'checkbox' value = '1'> " + tasks[i].item + " Due on: " + tasks[i].date;
+					}
+				}
+				localStorage.list = JSON.stringify(tasks);
+			}
+		}
+		function checkit(){
+			first = document.forms['new_event'].elements[0];
+			second = document.forms['new_event'].elements[1];
+			eventBuilder(first.value, second.value);
+			return false;
+		}
+		
+		function eventBuilder(name, due){
+			newEvent = {item: name, date: due};
+			var tasks = JSON.parse(localStorage.list);
+			tasks.push(newEvent);
+			var checklist = document.getElementById("checklist");
+			for(var i = 0; i < tasks.length; i++){
+				if(i === 0){
+					checklist.innerHTML = "<input type = 'checkbox' value = '1'> " + tasks[i].item + " Due on: " + tasks[i].date;
+				}else{
+					checklist.innerHTML = checklist.innerHTML + "<br /> <input type = 'checkbox' value = '1'> " + tasks[i].item + " Due on: " + tasks[i].date;
+				}
+			}
+			localStorage.list = JSON.stringify(tasks);
+		}
+	</script>
+<title> Productivity! </title>
 <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-reset.css" rel="stylesheet">
@@ -8,7 +50,7 @@
     <link rel="stylesheet" type="text/css" href="assets/bootstrap-datepicker/css/datepicker.css" />
 
 </head>
-<body>
+<body onload="initTasks()">
 <div class="container">
  <div id="newtasks" class="col-md-8">
   <!-- Trigger the modal with a button -->
@@ -44,13 +86,19 @@
               <div class="row">
                   <section class="panel">
                       <div class="panel-body">
-                          <form action="#" class="form-horizontal tasi-form">
+                          <form action="#" name="new_event" onsubmit="return checkit()" class="form-horizontal tasi-form">
                               <div class="form-group">
-                                  <label class="control-label col-md-4">Event Date</label>
-                                  <div class="col-md-4">
-                                      <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+								  <label class="control-label col-md-4">Item Name </label>
+								  <div class="col-md-8">
+									  <input name="item" class="form-control form-control-inline" size="16" type="text" value="" />
+								  </div>
+								  <br />
+                                  <label class="control-label col-md-4">Date Due</label>
+                                  <div class="col-md-8">
+                                      <input name="item" class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
                                   </div>
                               </div>
+							  <input type="submit" value = "submit form" />
                           </form>
                       </div>
                   </section>
@@ -61,7 +109,7 @@
           </section>
 </div>
 <div id="todos" class="col-md-4"> 
-<form>
+<form id = "checklist">
 	<input type = "checkbox" value = "1" onclick="msg()">
 	Finished!
 </form>
@@ -71,6 +119,8 @@
           
 	</div>
 
+	
+	
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
