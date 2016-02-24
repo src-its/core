@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<script>
+		function initTasks(){
+			if(localStorage.list === undefined || localStorage.list === null){
+				document.getElementById("checklist").innerHTML = "All done!";
+				var tasks = [];
+				localStorage.list = JSON.stringify(tasks);
+			}else{
+				var tasks = JSON.parse(localStorage.list);
+				var checklist = document.getElementById("checklist");
+				for(var i = 0; i < tasks.length; i++){
+					if(i === 0){
+						checklist.innerHTML = "<input type = 'checkbox' value = '1'> " + tasks[i].item + " Due on: " + tasks[i].date;
+					}else{
+						checklist.innerHTML = checklist.innerHTML + "<br /> <input type = 'checkbox' value = '1'> " + tasks[i].item + " Due on: " + tasks[i].date;
+					}
+				}
+				localStorage.list = JSON.stringify(tasks);
+			}
+		}
+		function checkit(){
+			first = document.forms['new_event'].elements[0];
+			second = document.forms['new_event'].elements[1];
+			eventBuilder(first.value, second.value);
+			return false;
+		}
+		
+		function eventBuilder(name, due){
+			newEvent = {item: name, date: due};
+			var tasks = JSON.parse(localStorage.list);
+			tasks.push(newEvent);
+			var checklist = document.getElementById("checklist");
+			for(var i = 0; i < tasks.length; i++){
+				if(i === 0){
+					checklist.innerHTML = "<input type = 'checkbox' value = '1'> " + tasks[i].item + " Due on: " + tasks[i].date;
+				}else{
+					checklist.innerHTML = checklist.innerHTML + "<br /> <input type = 'checkbox' value = '1'> " + tasks[i].item + " Due on: " + tasks[i].date;
+				}
+			}
+			localStorage.list = JSON.stringify(tasks);
+		}
+	</script>
+<title> Productivity! </title>
+<!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-reset.css" rel="stylesheet">
+    <!--external css-->
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap-datepicker/css/datepicker.css" />
+
+</head>
+<body onload="initTasks()">
+<div class="container">
+ <div id="newtasks" class="col-md-8">
+  <!-- Trigger the modal with a button -->
+  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#login">Login and Edit</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="login" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Login</h4>
+        </div>
+        <div class="modal-body">
+          <form name = "login">
+		  Username: <input type = "text" name = "user"> <br />
+		  Password: <input type = "password" name = "pass"> <br />
+		  <button type="button" class="btn btn-info btn-sm" onclick=""> Submit </button>
+		  </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <section class="wrapper">
+          <!-- page start-->
+              <!--date picker start-->
+              <div class="row">
+                  <section class="panel">
+                      <div class="panel-body">
+                          <form action="#" name="new_event" onsubmit="return checkit()" class="form-horizontal tasi-form">
+                              <div class="form-group">
+								  <label class="control-label col-md-4">Item Name </label>
+								  <div class="col-md-8">
+									  <input name="item" class="form-control form-control-inline" size="16" type="text" value="" />
+								  </div>
+								  <br />
+                                  <label class="control-label col-md-4">Date Due</label>
+                                  <div class="col-md-8">
+                                      <input name="item" class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+                                  </div>
+                              </div>
+							  <input type="submit" value = "submit form" />
+                          </form>
+                      </div>
+                  </section>
+			   </div>
+              <!--date picker end-->
+
+          <!-- page end-->
+          </section>
+</div>
+<div id="todos" class="col-md-4"> 
+<form id = "checklist">
+	<input type = "checkbox" value = "1" onclick="msg()">
+	Finished!
+</form>
+
+<p>On aliquet nunc vitae sollicitudin faucibus. Fusce tristique lobortis cursus. Nunc scelerisque felis at ante ornare, scelerisque varius eros fermentum. Cras semper mollis quam vitae suscipit. Phasellus volutpat nibh quis efficitur fermentum. Donec sit amet massa nunc. Proin aliquam, est a dictum molestie, risus tellus vulputate ipsum, non tempus neque nisi at risus. Proin libero diam, euismod vel justo vel, ultricies viverra tellus. Curabitur pharetra urna ante, id scelerisque magna cursus vel. Nunc vitae lorem ligula.</p>
+ </div>
+          
+	</div>
+
+	
+	
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="js/jquery.scrollTo.min.js"></script>
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="js/respond.min.js" ></script>
+  
+    <!--this page plugins-->
+
+  <script type="text/javascript" src="assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+  <!--right slidebar-->
+  <script src="js/slidebars.min.js"></script> 
+
+  <!--common script for all pages-->
+    <script src="js/common-scripts.js"></script>
+    <!--this page  script only-->
+    <script src="js/advanced-form-components.js"></script>
+
+
+  </body>
+<style type="text/css">
+#container{
+	//width:75%;
+	margin: 0 auto;
+}
+body{
+	padding-top:20px;
+}
+#todos{
+    background-color:#eeeeee;
+    float:left;
+	// margin: 10px 10px 0px 0px;
+	border-style:outset;
+	border-color:blue;
+}
+#newtasks{
+	float:right;
+	// margin: 10px 0 0 0
+}
+</style>
