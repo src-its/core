@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 CCCS-web: Online tools for social analysis.
 =====================================
 
@@ -18,8 +17,6 @@ This repository contains a customized Django web application.
 * page editing using Markdown
 * a working CV management system (can be extended or customized)
 * a framework document management system  (work in progress)
-
-
 
 ### Credits
 
