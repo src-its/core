@@ -27,6 +27,7 @@ if settings.DEBUG:
 
 urlpatterns += patterns(
     '',
+    url(r'^$', 'concept.ui-concept.index'),
     (r'^i18n/', include('django.conf.urls.i18n')),
     ("^maps/", include(cccsmap.urls)),
     ("^projects/", include(projects.urls)),

@@ -6,13 +6,14 @@ DEBUG = True
 DATABASES = {
     "default": {
         "ENGINE": "django.contrib.gis.db.backends.postgis",
-        "NAME": "cccs",
-        "USER": "cccs",
+	"NAME": "caweb",
+	"USER": "caweb",
         "PASSWORD": DBPASSWORD,
-        "HOST": "",
-        "PORT": ""}}
+        #"HOST": "",
+	"HOST": "127.0.0.1",
+        "PORT": "5432"}}
 
-VIRTUALENV = 'cccs'
+VIRTUALENV = 'ca-web'
 
 
 SITE_TITLE = 'Cross-Cultural Consulting Services'
