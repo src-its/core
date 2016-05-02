@@ -16,5 +16,5 @@ DATABASES = {
 VIRTUALENV = 'ca-web'
 
 
-SITE_TITLE = 'Cross-Cultural Consulting Services'
+SITE_TITLE = 'ITS at Simon\'s Rock'
 SITE_TAGLINE = None

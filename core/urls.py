@@ -4,6 +4,7 @@ from django.conf.urls import patterns, include, url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 
+from mezzanine.core import views
 from mezzanine.conf import settings
 
 import cccsmap.urls
@@ -16,7 +17,14 @@ admin.autodiscover()
 urlpatterns = i18n_patterns(
     "",
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    ("^admin/", include(admin.site.urls)))
+    ("^admin/", include(admin.site.urls)),
+    # Below points to a homepage, there seems to be a default setting for this
+    # defined somewhere else. Your virtual environment directory should 
+    # have a file src/mezzanine-origin/mezzanine/core/views.py where you can 
+    # write a view for your homepage. This is a temporary solution until we 
+    # figure out where the default page is.
+    (r'^$', views.index), 
+    )
 
 # Serve static media during development so things look right
 if settings.DEBUG:
@@ -27,7 +35,7 @@ if settings.DEBUG:
 
 urlpatterns += patterns(
     '',
-    url(r'^$', 'concept.ui-concept.index'),
+
     (r'^i18n/', include('django.conf.urls.i18n')),
     ("^maps/", include(cccsmap.urls)),
     ("^projects/", include(projects.urls)),
