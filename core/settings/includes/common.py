@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     "reversion",
     "django.contrib.gis",
+    "ca_wiki",
     "theme",
     "cccsmap",
     "projects",

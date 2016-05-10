@@ -18,12 +18,8 @@ urlpatterns = i18n_patterns(
     "",
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     ("^admin/", include(admin.site.urls)),
-    # Below points to a homepage, there seems to be a default setting for this
-    # defined somewhere else. Your virtual environment directory should 
-    # have a file src/mezzanine-origin/mezzanine/core/views.py where you can 
-    # write a view for your homepage. This is a temporary solution until we 
-    # figure out where the default page is.
-    (r'^$', views.index), 
+    # Adding in wiki urls below.
+    (r'^$', include('ca_wiki.urls')), 
     )
 
 # Serve static media during development so things look right
