@@ -1,0 +1,11 @@
+{% if new_issues %}
+<h2> Welcome to ca-web </h2>
+<p> Below are some on-going issues we're dealing with. </p>
+<ul>
+    {% for issue in new_issues %}
+    <li> {{ issue.issue_summary }} </li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p> No issues. </p>
+{% endif %}
